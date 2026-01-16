@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('indikator_id');
             $table->unsignedBigInteger('komponen_id');
             $table->unsignedBigInteger('user_id');
-            $table->char('jawaban',1);
+            $table->text('jawaban');
             $table->timestamps();
 
             $table->foreign('indikator_id')->references('id')->on('indikator')->onDelete('cascade');

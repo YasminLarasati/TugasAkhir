@@ -12,20 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('indikator', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('komponen_id');
-            $table->text('indikator');
-            $table->string('opsi_a');
-            $table->string('opsi_b');
-            $table->string('opsi_c');
-            $table->string('opsi_d');
-            $table->timestamps();
+        $table->id();
+        $table->unsignedBigInteger('komponen_id');
+        $table->text('indikator');
 
-            $table->foreign('komponen_id')
-                ->references('id')
-                ->on('komponen_kriteria')
-                ->onDelete('cascade');
+        // tipe jawaban
+        $table->enum('tipe_jawaban', [
+            'radio',
+            'checkbox',
+            'select',
+            'range',
+            'deskripsi'
+        ]);
+
+        $table->timestamps();
+
+        $table->foreign('komponen_id')
+            ->references('id')
+            ->on('komponen_kriteria')
+            ->onDelete('cascade');
         });
+
     }
 
     /**
